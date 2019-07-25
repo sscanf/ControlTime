@@ -1,0 +1,11 @@
+CC=gcc
+INCLUDES = -I/usr/include/mysql
+LIBS = -L/usr/lib/mysql -lmysqlclient -lz 
+all: myclient
+main.o: main.c myclient.h
+	$(CC) -c $(INCLUDES) main.c
+myclient: main.o
+	$(CC) -o myclient main.o $(LIBS)
+
+clean:
+	rm -f myclient main.o
